@@ -1,0 +1,18 @@
+language: minimal
+
+services:
+  - docker
+
+before_install:
+  - docker login --username=zhihui@1131404081736079 --password=greatzee@168 registry.cn-shenzhen.aliyuncs.com  
+
+script:
+  - docker pull fluent/fluent-bit:3.2.4
+  - docker tag fluent/fluent-bit:3.2.4 registry.cn-shenzhen.aliyuncs.com/gsmba-thirdpart/fluent-bit:3.2.4
+  - docker push registry.cn-shenzhen.aliyuncs.com/gsmba-thirdpart/fluent-bit:3.2.4
+
+after_success:
+  - echo "Docker image successfully pushed to Aliyun Container Registry."
+
+notifications:
+  email: false
